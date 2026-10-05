@@ -15,8 +15,8 @@ const minPrice = Math.min(...dishes.map(d => parseInt(d.price)))
 
 // Only facts the menu itself backs up.
 const STATS = [
+  { value: '5.0', label: 'рейтинг на Яндекс Картах', description: 'высшая оценка гостей' },
   { value: String(dishes.length), label: 'позиций в меню', description: 'кофе, чай, завтраки и обеды' },
-  { value: '4', label: 'способа заварить', description: 'аэропресс, кемекс, воронка, фильтр' },
   { value: String(desserts), label: 'десертов', description: 'домашние, есть vegan-варианты' },
   { value: `${minPrice} ₽`, label: 'чай от', description: 'растительное молоко — в любой напиток' },
 ]
