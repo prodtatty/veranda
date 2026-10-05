@@ -8,59 +8,67 @@ const VIDEOS = [
 const LABELS = ['Утро', 'Эспрессо', 'Вечер']
 const ACCENT = '#F598F2'
 
-function usePreloaded(urls: string[]) {
-  const [srcs, setSrcs] = useState(urls)
+// Only the clip being shown is fetched; others load the first time they are
+// picked. Playback pauses while the hero is off-screen or the tab is hidden,
+// so the page isn't decoding three videos at once.
+function HeroVideos({ active, visible }: { active: number; visible: boolean }) {
+  const [loaded, setLoaded] = useState<number[]>([active])
+  const refs = useRef<(HTMLVideoElement | null)[]>([])
+
   useEffect(() => {
-    let alive = true
-    const created: string[] = []
-    urls.forEach((url, i) =>
-      fetch(url)
-        .then(r => (r.ok ? r.blob() : Promise.reject()))
-        .then(blob => {
-          const obj = URL.createObjectURL(blob)
-          created.push(obj)
-          if (alive) setSrcs(prev => prev.map((s, j) => (j === i ? obj : s)))
-        })
-        .catch(() => {}),
-    )
-    return () => {
-      alive = false
-      created.forEach(u => URL.revokeObjectURL(u))
-    }
-  }, [urls])
-  return srcs
+    setLoaded(l => (l.includes(active) ? l : [...l, active]))
+  }, [active])
+
+  useEffect(() => {
+    const sync = () =>
+      refs.current.forEach((v, i) => {
+        if (!v) return
+        if (i === active && visible && !document.hidden) v.play().catch(() => {})
+        else v.pause()
+      })
+    sync()
+    document.addEventListener('visibilitychange', sync)
+    return () => document.removeEventListener('visibilitychange', sync)
+  }, [active, visible, loaded])
+
+  return (
+    <>
+      {VIDEOS.map((src, i) =>
+        loaded.includes(i) ? (
+          <video
+            key={i}
+            ref={el => { refs.current[i] = el }}
+            src={src}
+            muted loop playsInline preload={i === active ? 'auto' : 'metadata'} aria-hidden="true"
+            className={`video-fade absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${i === active ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ) : null,
+      )}
+    </>
+  )
 }
 
 export default function Hero() {
   const [active, setActive] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const ref = useRef<HTMLElement>(null)
-  const srcs = usePreloaded(VIDEOS)
+  const [onScreen, setOnScreen] = useState(true)
   const accent = active === 0 ? ACCENT : '#fff'
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        setRevealed(true)
-        io.disconnect()
-      }
-    }, { threshold: 0.35 })
+      setOnScreen(e.isIntersecting)
+      if (e.intersectionRatio >= 0.35) setRevealed(true)
+    }, { threshold: [0, 0.35] })
     io.observe(el)
     return () => io.disconnect()
   }, [])
 
   return (
     <section ref={ref} aria-label="Кофейня Веранда" className={`relative h-[100svh] min-h-[640px] overflow-hidden ${revealed ? 'is-revealed' : ''}`}>
-      {srcs.map((src, i) => (
-        <video
-          key={i}
-          src={src}
-          autoPlay muted loop playsInline aria-hidden="true"
-          className={`video-fade absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${i === active ? 'opacity-100' : 'opacity-0'}`}
-        />
-      ))}
+      <HeroVideos active={active} visible={onScreen} />
       <div className="absolute inset-0 z-[1] bg-black/10" aria-hidden="true" />
       {/* Bottom scrim keeps the copy readable over bright video frames. */}
       <div className="absolute inset-x-0 bottom-0 z-[1] h-[70%] bg-gradient-to-t from-black/75 via-black/35 to-transparent" aria-hidden="true" />

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Menu from './components/Menu'
-import Reviews from './components/Reviews'
+// Reviews pull in the animation library, so they load in their own chunk.
+const Reviews = lazy(() => import('./components/Reviews'))
 import Contacts from './components/Contacts'
 import Footer from './components/Footer'
 import CookieBanner from './components/CookieBanner'
@@ -35,7 +36,9 @@ export default function App() {
         <main id="top">
           <Hero />
           <Menu />
-          <Reviews />
+          <Suspense fallback={<div id="reviews" className="min-h-[600px] bg-[#0B0B0C]" />}>
+            <Reviews />
+          </Suspense>
           <Contacts />
         </main>
       )}
