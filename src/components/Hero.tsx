@@ -91,12 +91,12 @@ export default function Hero() {
               the spec's 200px / 129.6px but shrinks with the viewport to leave the
               copy column room instead of overflowing. */}
           <div className="flex-none">
-            <h1 className="reveal-up whitespace-nowrap text-[min(200px,13.2vw)] font-medium uppercase leading-[81%] tracking-[-0.03em] md-tablet:text-[min(129.6px,11vw)] md-tablet:leading-[0.875] md-tablet:tracking-[-0.06em] mobile:text-[clamp(56px,17vw,80px)] mobile:leading-[96px] mobile:tracking-[-4px]">
+            <h1 className="reveal-up whitespace-nowrap text-[min(170px,10.5vw)] font-medium uppercase leading-[81%] tracking-[-0.03em] md-tablet:text-[min(110px,9vw)] md-tablet:leading-[0.875] md-tablet:tracking-[-0.06em] mobile:text-[clamp(56px,17vw,80px)] mobile:leading-[96px] mobile:tracking-[-4px]">
               Веранда<span style={{ color: accent }} className="transition-colors duration-700">.</span>
             </h1>
           </div>
-          <div className="flex min-w-0 flex-1 flex-col items-start gap-6 pl-[50px] mobile:pl-0">
-            <p className="hero-copy reveal-right max-w-[460px] text-[17px] font-semibold leading-6 tracking-[-0.16px]">
+          <div className="flex min-w-0 flex-1 flex-col items-start gap-6 pl-10 mobile:pl-0">
+            <p className="hero-copy reveal-right max-w-[640px] text-[17px] font-semibold leading-6 tracking-[-0.16px]">
               Семейная кофейня «Веранда», в которой всегда большой выбор вкусного кофе и чая! На выбор гостю предоставлены альтернативные методы заваривания кофе, растительное молоко. В ассортименте десерты и закуски собственного приготовления. Иногда Вам может сварить кофе сам хозяин, а хозяйку можно застать за обновлением внутреннего декора.</p>
             <a href="#menu" className="reveal-right reveal-delay cta-fill rounded-full border border-white px-6 py-3 text-sm font-medium lowercase">
               смотреть меню
