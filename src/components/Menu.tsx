@@ -36,7 +36,8 @@ export default function Menu() {
     <section id="menu" aria-labelledby="menu-title" className="menu-board px-[15px] py-24 mobile:px-[18px] mobile:py-16">
       <div className="mx-auto max-w-[1340px]">
         <div className="mb-14 flex items-end justify-between gap-6 mobile:flex-col mobile:items-start">
-          <h2 id="menu-title" className="text-[64px] font-semibold uppercase leading-[90%] tracking-[-1px] text-[var(--board-fg)] mobile:text-[44px]">Меню</h2>
+          <div><p className="eyebrow mb-4 !text-[var(--gold)]">Кофе · чай · кухня</p>
+          <h2 id="menu-title" className="text-[64px] font-semibold uppercase leading-[90%] tracking-[-1px] text-[var(--board-fg)] mobile:text-[44px]">Меню</h2></div>
           <p className="text-sm uppercase tracking-[0.12em] text-[var(--gold)]">цены в рублях · ✦ веранда</p>
         </div>
 
