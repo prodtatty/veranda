@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
-import { Quote, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Quote, Star } from 'lucide-react'
 import { BUSINESS } from '../config'
 import { REVIEWS } from '../data/reviews'
 import { MENU } from '../data/menu'
@@ -23,7 +23,7 @@ const STATS = [
 
 function Stars({ value }: { value: number }) {
   return (
-    <div className="flex justify-center gap-0.5" aria-label={`Оценка ${value} из 5`}>
+    <div className="flex gap-0.5" aria-label={`Оценка ${value} из 5`}>
       {[1, 2, 3, 4, 5].map(i => (
         <Star key={i} size={14} className={i <= value ? 'fill-[#F598F2] text-[#F598F2]' : 'text-white/20'} aria-hidden="true" />
       ))}
@@ -35,6 +35,8 @@ export default function Reviews() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true })
   const reduce = useReducedMotion()
+  const track = useRef<HTMLUListElement>(null)
+  const scroll = (dir: number) => track.current?.scrollBy({ left: dir * 424, behavior: 'smooth' })
 
   const card = (index: number) => ({
     initial: reduce ? { opacity: 1 } : { opacity: 0, y: 30 },
@@ -79,14 +81,17 @@ export default function Reviews() {
         </div>
 
         {REVIEWS.length > 0 && (
-          <ul className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2">
+          <ul ref={track} className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2">
             {REVIEWS.map((r, i) => (
-              <motion.li key={r.author + i} {...card(i + STATS.length)} className={`${cardClass} flex w-[400px] max-w-[85vw] shrink-0 snap-start flex-col gap-4 text-center`}>
-                <Quote size={26} className="mx-auto text-[#F598F2]/70" aria-hidden="true" />
+              <motion.li key={r.author + i} {...card(i + STATS.length)} className={`${cardClass} flex w-[400px] max-w-[85vw] shrink-0 snap-start flex-col gap-4 text-left`}>
+                <Quote size={26} className="text-[#F598F2]/70" aria-hidden="true" />
                 <p className="text-[15px] leading-6 text-white/85">{r.text}</p>
-                <div className="mt-auto">
-                  <p className="font-semibold">{r.author}</p>
-                  <Stars value={r.rating} />
+                <div className="mt-auto flex items-center gap-3 border-t border-white/10 pt-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F598F2]/15 font-semibold uppercase text-[#F598F2]" aria-hidden="true">{r.author.charAt(0)}</span>
+                  <div>
+                    <p className="font-semibold">{r.author}</p>
+                    <div className="flex items-center gap-2"><Stars value={r.rating} />{r.date && <span className="text-xs text-white/45">{r.date}</span>}</div>
+                  </div>
                 </div>
                 {glow}
               </motion.li>
@@ -94,10 +99,16 @@ export default function Reviews() {
           </ul>
         )}
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 flex items-center justify-center gap-3">
+          {REVIEWS.length > 1 && (
+            <button type="button" onClick={() => scroll(-1)} aria-label="Предыдущие отзывы" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:border-[#F598F2] hover:text-[#F598F2]"><ArrowLeft size={18} /></button>
+          )}
           <a href={`${BUSINESS.yandexUrl}reviews/`} target="_blank" rel="noopener noreferrer" className="cta-fill inline-block rounded-full border border-white px-7 py-3 text-sm font-medium lowercase">
             читать отзывы на яндекс картах
           </a>
+          {REVIEWS.length > 1 && (
+            <button type="button" onClick={() => scroll(1)} aria-label="Следующие отзывы" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 transition hover:border-[#F598F2] hover:text-[#F598F2]"><ArrowRight size={18} /></button>
+          )}
         </div>
       </div>
     </section>
