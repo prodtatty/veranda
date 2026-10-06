@@ -64,3 +64,6 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .card-dark { background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; }
 .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); }
 .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes cookieIn { from { transform: translateY(100%) } to { transform: translateY(0) } }
+.cookie-bar { animation: cookieIn .6s var(--ease-spring) .8s both; }

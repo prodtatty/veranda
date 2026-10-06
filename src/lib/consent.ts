@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export type Consent = 'all' | 'necessary' | null
-const KEY = 'veranda-cookie-consent'
+const KEY = 'veranda-cookie-consent-v2'
 const EVT = 'veranda-consent'
 
 function read(): Consent {
