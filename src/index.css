@@ -58,9 +58,6 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
     linear-gradient(180deg, #000 0%, transparent 14%, transparent 86%, #000 100%),
     radial-gradient(90% 60% at 85% 20%, #3A4A22 0%, #26331A 45%, var(--board-bg) 75%, #070A04 100%);
 }
-.menu-cat { display: flex; align-items: center; gap: 12px; }
-.menu-cat::after { content: '✦'; flex: 1; text-align: right; font-size: 11px; color: var(--gold);
-  background: linear-gradient(var(--board-line), var(--board-line)) left center / calc(100% - 16px) 1px no-repeat; }
 
 /* Shared dark surface for review and contact cards. */
 .card-dark { background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; }
