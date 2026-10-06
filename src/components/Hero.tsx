@@ -70,7 +70,7 @@ export default function Hero() {
               the spec's 200px / 129.6px but shrinks with the viewport to leave the
               copy column room instead of overflowing. */}
           <div className="flex-none">
-            <h1 className="reveal-up whitespace-nowrap text-[min(170px,10.5vw)] font-medium uppercase leading-[81%] tracking-[-0.03em] md-tablet:text-[min(110px,9vw)] md-tablet:leading-[0.875] md-tablet:tracking-[-0.06em] mobile:text-[clamp(56px,17vw,80px)] mobile:leading-[96px] mobile:tracking-[-4px]">
+            <h1 className="reveal-up whitespace-nowrap font-['Advent_Pro',sans-serif] !font-extralight text-[min(170px,10.5vw)] font-medium uppercase leading-[81%] tracking-[0.02em] md-tablet:text-[min(110px,9vw)] md-tablet:leading-[0.875] md-tablet:tracking-[0.01em] mobile:text-[clamp(56px,17vw,80px)] mobile:leading-[96px] mobile:tracking-[0.01em]">
               Веранда<span style={{ color: accent }} className="transition-colors duration-700">.</span>
             </h1>
           </div>
