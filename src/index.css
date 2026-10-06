@@ -67,3 +67,10 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 
 @keyframes cookieIn { from { transform: translateY(100%) } to { transform: translateY(0) } }
 .cookie-bar { animation: cookieIn .6s var(--ease-spring) .8s both; }
+
+/* Minimal page scrollbar: thin translucent thumb, no track. */
+html { scrollbar-width: thin; scrollbar-color: rgba(244,163,176,.45) transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(244,163,176,.4); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(244,163,176,.75); }
