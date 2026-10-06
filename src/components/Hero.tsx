@@ -1,59 +1,41 @@
 import { useEffect, useRef, useState } from 'react'
 
-const VIDEOS = [
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260629_030107_874273ea-684a-4e90-bb96-8fdfde48d53d.mp4',
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260629_032424_3c9c2a9d-807b-4482-80e6-dd6d9dfd4545.mp4',
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260627_094019_4214ea73-b963-46a4-8327-61489192de99.mp4',
-]
-const LABELS = ['Утро', 'Эспрессо', 'Вечер']
+const POSTER = 'videos/hero-poster.jpg'
 const ACCENT = '#F598F2'
 
-// Only the clip being shown is fetched; others load the first time they are
-// picked. Playback pauses while the hero is off-screen or the tab is hidden,
-// so the page isn't decoding three videos at once.
-function HeroVideos({ active, visible }: { active: number; visible: boolean }) {
-  const [loaded, setLoaded] = useState<number[]>([active])
-  const refs = useRef<(HTMLVideoElement | null)[]>([])
-
+// Pauses while the hero is off-screen or the tab is hidden, so the page
+// isn't decoding video nobody can see.
+function HeroVideo({ visible }: { visible: boolean }) {
+  const ref = useRef<HTMLVideoElement>(null)
   useEffect(() => {
-    setLoaded(l => (l.includes(active) ? l : [...l, active]))
-  }, [active])
-
-  useEffect(() => {
-    const sync = () =>
-      refs.current.forEach((v, i) => {
-        if (!v) return
-        if (i === active && visible && !document.hidden) v.play().catch(() => {})
-        else v.pause()
-      })
+    const sync = () => {
+      const v = ref.current
+      if (!v) return
+      if (visible && !document.hidden) v.play().catch(() => {})
+      else v.pause()
+    }
     sync()
     document.addEventListener('visibilitychange', sync)
     return () => document.removeEventListener('visibilitychange', sync)
-  }, [active, visible, loaded])
-
+  }, [visible])
   return (
-    <>
-      {VIDEOS.map((src, i) =>
-        loaded.includes(i) ? (
-          <video
-            key={i}
-            ref={el => { refs.current[i] = el }}
-            src={src}
-            muted loop playsInline preload={i === active ? 'auto' : 'metadata'} aria-hidden="true"
-            className={`video-fade absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${i === active ? 'opacity-100' : 'opacity-0'}`}
-          />
-        ) : null,
-      )}
-    </>
+    <video
+      ref={ref}
+      poster={POSTER}
+      muted loop playsInline autoPlay preload="auto" aria-hidden="true"
+      className="video-fade absolute inset-0 h-full w-full object-cover"
+    >
+      <source src="videos/hero.webm" type="video/webm" />
+      <source src="videos/hero.mp4" type="video/mp4" />
+    </video>
   )
 }
 
 export default function Hero() {
-  const [active, setActive] = useState(0)
   const [revealed, setRevealed] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const [onScreen, setOnScreen] = useState(true)
-  const accent = active === 0 ? ACCENT : '#fff'
+  const accent = ACCENT
 
   useEffect(() => {
     const el = ref.current
@@ -68,26 +50,14 @@ export default function Hero() {
 
   return (
     <section ref={ref} aria-label="Кофейня Веранда" className={`relative h-[100svh] min-h-[640px] overflow-hidden ${revealed ? 'is-revealed' : ''}`}>
-      <HeroVideos active={active} visible={onScreen} />
+      <HeroVideo visible={onScreen} />
       <div className="absolute inset-0 z-[1] bg-black/10" aria-hidden="true" />
       {/* Bottom scrim keeps the copy readable over bright video frames. */}
       <div className="absolute inset-x-0 bottom-0 z-[1] h-[70%] bg-gradient-to-t from-black/75 via-black/35 to-transparent" aria-hidden="true" />
 
       <div className="relative z-[2] mx-auto flex h-full max-w-[1340px] flex-col items-end justify-end gap-[150px] px-[15px] pt-[190px] mobile:items-start mobile:gap-[72px] mobile:px-[18px] mobile:pt-[140px]">
         <div className="hero-copy flex w-full mobile:flex-col mobile:gap-7">
-          <div className="flex flex-[4] flex-col items-start gap-1" role="group" aria-label="Атмосфера">
-            {LABELS.map((label, i) => (
-              <button
-                key={label}
-                type="button"
-                aria-pressed={i === active}
-                onClick={() => setActive(i)}
-                className={`role-link text-xs font-medium uppercase leading-4 tracking-[-0.12px] ${i === active ? 'opacity-100' : 'opacity-55 hover:opacity-75'}`}
-              >
-                0{i + 1} / {label}
-              </button>
-            ))}
-          </div>
+          <div className="flex-[4]" aria-hidden="true" />
           <div className="flex flex-1 items-start gap-2 text-xs font-medium uppercase leading-4" role="status">
             <span className="status-dot mt-[4px]" style={{ background: accent, boxShadow: `0 0 10px 2px ${accent}99` }} aria-hidden="true" />
             Открыто — ждём вас
