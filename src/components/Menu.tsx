@@ -27,7 +27,7 @@ const cleanGroup = (t: string) => t.split(/\s*[|/]\s*/)[0]
 
 function Brush() {
   return (
-    <svg className="absolute -bottom-1 left-[-6%] h-[0.55em] w-[112%] text-[var(--gold)] opacity-35" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+    <svg className="absolute -bottom-1 left-[-6%] h-[0.55em] w-[112%] text-[var(--gold)] opacity-30" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
       <path d="M4 15C46 7 92 18 140 11s104-6 156 3c2 3-2 6-6 6-48-6-98-3-148 2S40 24 6 20c-4-1-5-4-2-5z" fill="currentColor" />
     </svg>
   )
@@ -71,7 +71,7 @@ export default function Menu() {
 
   return (
     <section id="menu" aria-labelledby="menu-title" className="menu-board px-[15px] py-24 mobile:px-[18px] mobile:py-16">
-      <div className="mx-auto max-w-[1340px]">
+      <div className="kraft mx-auto max-w-[1340px] px-14 py-16 md-tablet:px-10 mobile:px-5 mobile:py-10">
         <div className="mb-16 flex items-end justify-between gap-6 mobile:flex-col mobile:items-start">
           <div>
             <p className="mb-1 font-['Marck_Script',cursive] text-3xl text-[var(--gold)]">кофе · чай · кухня</p>
@@ -97,7 +97,7 @@ export default function Menu() {
                 const { title, size } = split(d.name)
                 return (
                   <li key={d.name} className={`flex items-center gap-5 ${i % 2 ? 'flex-row-reverse text-right' : ''}`}>
-                    <img src={d.image} alt={title} loading="lazy" className="h-28 w-28 shrink-0 rounded-full border-2 border-[var(--gold)] object-cover shadow-[0_10px_30px_rgba(0,0,0,.45)]" />
+                    <img src={d.image} alt={title} loading="lazy" className="h-28 w-28 shrink-0 rounded-full border-2 border-[var(--gold)] object-cover shadow-[0_8px_20px_rgba(60,35,10,.35)]" />
                     <div className="min-w-0">
                       <p className="font-['Cormorant_Garamond',serif] text-2xl font-semibold italic leading-6 text-[var(--board-fg)]">{title}</p>
                       <p className="mt-1 line-clamp-2 text-[12px] leading-4 text-[var(--board-muted)]">{d.description}</p>

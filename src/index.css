@@ -51,13 +51,21 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .hero-copy { text-shadow: 0 1px 2px rgba(0,0,0,.6), 0 2px 16px rgba(0,0,0,.45); }
 
 .menu-board {
-  /* Forest board keyed to the hero video's sunlit leaves (sampled #D7DB96 / #6B7C44 / #222A12). */
-  --board-bg: #121A0C; --board-fg: #F4F6E6; --board-muted: rgba(244,246,230,.66);
-  --board-line: rgba(207,224,138,.4); --gold: #D7DB96;
-  background:
-    linear-gradient(180deg, #000 0%, transparent 14%, transparent 86%, #000 100%),
-    radial-gradient(90% 60% at 85% 20%, #3A4A22 0%, #26331A 45%, var(--board-bg) 75%, #070A04 100%);
+  /* Dark page around a kraft-paper sheet; ink colours are for text on the paper. */
+  --board-fg: #2B1D10; --board-muted: rgba(43,29,16,.66);
+  --board-line: rgba(43,29,16,.38); --gold: #3E5A1C;
+  background: #000;
 }
+.kraft {
+  position: relative; border-radius: 6px;
+  background-color: #C9A574;
+  background-image:
+    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(80,50,20,.35) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .08 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .09' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .85 0 0 0 0 .65 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 2px 0 rgba(255,255,255,.15) inset;
+}
+
 
 /* Shared dark surface for review and contact cards. */
 .card-dark { background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; }
