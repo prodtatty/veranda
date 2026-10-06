@@ -12,13 +12,13 @@ export default function Contacts() {
     <section id="contacts" aria-labelledby="contacts-title" className="mx-auto max-w-[1340px] px-[15px] py-28 mobile:px-[18px] mobile:py-20">
       <p className="eyebrow mb-4">Сосновый Бор</p>
       <h2 id="contacts-title" className="mb-10 text-[64px] font-medium uppercase leading-[90%] tracking-[-2px] mobile:text-[40px]">
-        Контакты<span className="text-[#CFE08A]">.</span>
+        Контакты<span className="text-[#F4A3B0]">.</span>
       </h2>
       <div className="card-dark flex items-end justify-between gap-10 p-10 mobile:flex-col mobile:items-start mobile:p-7">
         <ul className="flex flex-col gap-7">
           {ROWS.map(({ icon: Icon, label, value, href, external }) => (
             <li key={label} className="flex gap-4">
-              <Icon size={26} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#CFE08A]" aria-hidden="true" />
+              <Icon size={26} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[#F4A3B0]" aria-hidden="true" />
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.06em] text-white/55">{label}</p>
                 <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="nav-link-underline text-lg leading-7">

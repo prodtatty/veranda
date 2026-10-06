@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-white/10">
       <div className="mx-auto grid max-w-[1340px] gap-10 px-[15px] py-16 text-sm md:grid-cols-3 mobile:px-[18px]">
         <div>
-          <p className="mb-3 text-2xl font-medium uppercase tracking-[-0.5px]">Веранда<span className="text-[#CFE08A]">.</span></p>
+          <p className="mb-3 text-2xl font-medium uppercase tracking-[-0.5px]">Веранда<span className="text-[#F4A3B0]">.</span></p>
           <p className="text-white/60">Кофейня</p>
           <a href={BUSINESS.yandexUrl} target="_blank" rel="noopener noreferrer" className="nav-link-underline mt-3 inline-block">Как добраться — Яндекс Карты</a>
         </div>
