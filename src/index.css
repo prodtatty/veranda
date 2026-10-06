@@ -61,12 +61,14 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .kraft {
   position: relative; overflow: hidden;
   background-color: #34481F;
+  /* The flat green veil on top tones the texture down by ~40%. */
   background-image:
+    linear-gradient(rgba(52,72,31,.4), rgba(52,72,31,.4)),
     radial-gradient(130% 100% at 50% 45%, transparent 50%, rgba(5,10,2,.5) 100%),
     url('./assets/paper.webp');
-  background-size: 100% 100%, cover;
+  background-size: 100% 100%, 100% 100%, cover;
   background-position: center;
-  background-blend-mode: normal, screen;
+  background-blend-mode: normal, normal, screen;
   box-shadow: 0 -20px 60px rgba(0,0,0,.5);
 }
 /* Dog-eared corners: a folded-over triangle with its shadow. */
