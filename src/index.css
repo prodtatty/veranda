@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); --accent: #F598F2; }
+:root { color-scheme: dark; --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); --accent: #A98BFF; }
 html { scroll-behavior: smooth; }
 section[id] { scroll-margin-top: 24px; }
 html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -51,12 +51,12 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .hero-copy { text-shadow: 0 1px 2px rgba(0,0,0,.6), 0 2px 16px rgba(0,0,0,.45); }
 
 .menu-board {
-  /* Rose board keyed to the pink blossom in the hero footage (accent #F598F2). */
-  --board-bg: #2A1026; --board-fg: #FFF1FB; --board-muted: rgba(255,241,251,.66);
-  --board-line: rgba(245,152,242,.4); --gold: #F7A8F4;
+  /* Violet board keyed to the flowers in the hero video (#7336D0 sampled, lightened for text). */
+  --board-bg: #140E2C; --board-fg: #F3EFFF; --board-muted: rgba(243,239,255,.66);
+  --board-line: rgba(169,139,255,.42); --gold: #B9A0FF;
   background:
     linear-gradient(180deg, #000 0%, transparent 14%, transparent 86%, #000 100%),
-    radial-gradient(90% 60% at 85% 20%, #5A2350 0%, #3A1634 45%, var(--board-bg) 75%, #14070F 100%);
+    radial-gradient(90% 60% at 85% 20%, #3A2470 0%, #241650 45%, var(--board-bg) 75%, #08061A 100%);
 }
 .menu-cat { display: flex; align-items: center; gap: 12px; }
 .menu-cat::after { content: '✦'; flex: 1; text-align: right; font-size: 11px; color: var(--gold);

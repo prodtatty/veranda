@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const POSTER = 'videos/hero-poster.jpg'
-const ACCENT = '#F598F2'
+const ACCENT = '#A98BFF'
 
 // Pauses while the hero is off-screen or the tab is hidden, so the page
 // isn't decoding video nobody can see.
