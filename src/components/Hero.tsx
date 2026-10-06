@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const POSTER = 'videos/hero-poster.jpg'
-const ACCENT = '#A98BFF'
+const ACCENT = '#CFE08A'
 
 // Pauses while the hero is off-screen or the tab is hidden, so the page
 // isn't decoding video nobody can see.
@@ -52,6 +52,7 @@ export default function Hero() {
     <section ref={ref} aria-label="Кофейня Веранда" className={`relative h-[100svh] min-h-[640px] overflow-hidden ${revealed ? 'is-revealed' : ''}`}>
       <HeroVideo visible={onScreen} />
       <div className="absolute inset-0 z-[1] bg-black/10" aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-black/55 to-transparent" aria-hidden="true" />
       {/* Bottom scrim keeps the copy readable over bright video frames. */}
       <div className="absolute inset-x-0 bottom-0 z-[1] h-[70%] bg-gradient-to-t from-black/75 via-black/35 to-transparent" aria-hidden="true" />
 

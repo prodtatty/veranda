@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: dark; --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); --accent: #A98BFF; }
+:root { color-scheme: dark; --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); --accent: #CFE08A; }
 html { scroll-behavior: smooth; }
 section[id] { scroll-margin-top: 24px; }
 html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -51,12 +51,12 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .hero-copy { text-shadow: 0 1px 2px rgba(0,0,0,.6), 0 2px 16px rgba(0,0,0,.45); }
 
 .menu-board {
-  /* Violet board keyed to the flowers in the hero video (#7336D0 sampled, lightened for text). */
-  --board-bg: #140E2C; --board-fg: #F3EFFF; --board-muted: rgba(243,239,255,.66);
-  --board-line: rgba(169,139,255,.42); --gold: #B9A0FF;
+  /* Forest board keyed to the hero video's sunlit leaves (sampled #D7DB96 / #6B7C44 / #222A12). */
+  --board-bg: #121A0C; --board-fg: #F4F6E6; --board-muted: rgba(244,246,230,.66);
+  --board-line: rgba(207,224,138,.4); --gold: #D7DB96;
   background:
     linear-gradient(180deg, #000 0%, transparent 14%, transparent 86%, #000 100%),
-    radial-gradient(90% 60% at 85% 20%, #3A2470 0%, #241650 45%, var(--board-bg) 75%, #08061A 100%);
+    radial-gradient(90% 60% at 85% 20%, #3A4A22 0%, #26331A 45%, var(--board-bg) 75%, #070A04 100%);
 }
 .menu-cat { display: flex; align-items: center; gap: 12px; }
 .menu-cat::after { content: '✦'; flex: 1; text-align: right; font-size: 11px; color: var(--gold);
