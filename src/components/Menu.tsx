@@ -27,7 +27,7 @@ const cleanGroup = (t: string) => t.split(/\s*[|/]\s*/)[0]
 
 function Brush() {
   return (
-    <svg className="absolute -bottom-1 left-[-6%] h-[0.55em] w-[112%] text-[var(--gold)] opacity-30" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
+    <svg className="absolute -bottom-1 left-[-6%] h-[0.55em] w-[112%] text-[var(--gold)] opacity-40" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
       <path d="M4 15C46 7 92 18 140 11s104-6 156 3c2 3-2 6-6 6-48-6-98-3-148 2S40 24 6 20c-4-1-5-4-2-5z" fill="currentColor" />
     </svg>
   )
@@ -70,8 +70,9 @@ export default function Menu() {
   const featured = FEATURED.map(f => all.find(d => d.name.startsWith(f))).filter((d): d is Dish => !!d)
 
   return (
-    <section id="menu" aria-labelledby="menu-title" className="menu-board px-[15px] py-24 mobile:px-[18px] mobile:py-16">
-      <div className="kraft mx-auto max-w-[1340px] px-14 py-16 md-tablet:px-10 mobile:px-5 mobile:py-10">
+    <section id="menu" aria-labelledby="menu-title" className="menu-board">
+      <div className="kraft px-[15px] py-24 mobile:px-[18px] mobile:py-16">
+      <div className="mx-auto max-w-[1340px]">
         <div className="mb-16 flex items-end justify-between gap-6 mobile:flex-col mobile:items-start">
           <div>
             <p className="mb-1 font-['Marck_Script',cursive] text-3xl text-[var(--gold)]">кофе · чай · кухня</p>
@@ -111,6 +112,7 @@ export default function Menu() {
             </ul>
           </aside>
         </div>
+      </div>
       </div>
     </section>
   )

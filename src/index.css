@@ -51,21 +51,46 @@ html, body { background: #000; color: #fff; font-family: 'Figtree', 'Onest', sys
 .hero-copy { text-shadow: 0 1px 2px rgba(0,0,0,.6), 0 2px 16px rgba(0,0,0,.45); }
 
 .menu-board {
-  /* Dark page around a kraft-paper sheet; ink colours are for text on the paper. */
-  --board-fg: #2B1D10; --board-muted: rgba(43,29,16,.66);
-  --board-line: rgba(43,29,16,.38); --gold: #3E5A1C;
+  /* Ink colours for text printed on the green kraft sheet. */
+  --board-fg: #F4F1DE; --board-muted: rgba(244,241,222,.7);
+  --board-line: rgba(244,241,222,.32); --gold: #D7DB96;
   background: #000;
 }
+/* Full-width sheet of green kraft paper: fibre grain, edge wear, and two soft
+   vertical folds (a tri-fold menu) plus one horizontal crease. */
 .kraft {
-  position: relative; border-radius: 6px;
-  background-color: #C9A574;
+  position: relative; overflow: hidden;
+  background-color: #3D5426;
   background-image:
-    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(80,50,20,.35) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .08 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .09' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .85 0 0 0 0 .65 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-  box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 2px 0 rgba(255,255,255,.15) inset;
+    linear-gradient(90deg, transparent calc(33.3% - 18px), rgba(255,255,230,.05) calc(33.3% - 2px), rgba(0,0,0,.12) calc(33.3% + 1px), transparent calc(33.3% + 22px)),
+    linear-gradient(90deg, transparent calc(66.6% - 18px), rgba(255,255,230,.05) calc(66.6% - 2px), rgba(0,0,0,.12) calc(66.6% + 1px), transparent calc(66.6% + 22px)),
+    linear-gradient(180deg, transparent calc(50% - 14px), rgba(255,255,230,.05) calc(50% - 1px), rgba(0,0,0,.1) calc(50% + 1px), transparent calc(50% + 16px)),
+    radial-gradient(130% 100% at 50% 45%, transparent 55%, rgba(10,20,5,.45) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .14 0 0 0 0 .05 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.015 .12' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .9 0 0 0 0 .7 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  box-shadow: 0 0 0 1px rgba(255,255,230,.06) inset, 0 -20px 60px rgba(0,0,0,.5);
 }
-
+/* Dog-eared corners: a folded-over triangle with its shadow. */
+.kraft::before, .kraft::after {
+  content: ''; position: absolute; width: 64px; height: 64px; pointer-events: none;
+}
+.kraft::before {
+  top: 0; right: 0;
+  background: linear-gradient(225deg, #000 50%, #5C7A3C 50%, #4A6630 70%, #3D5426 100%);
+  box-shadow: -6px 6px 12px rgba(0,0,0,.35);
+  border-bottom-left-radius: 4px;
+}
+.kraft::after {
+  bottom: 0; left: 0; width: 44px; height: 44px;
+  background: linear-gradient(45deg, #000 50%, #5C7A3C 50%, #4A6630 70%, #3D5426 100%);
+  box-shadow: 5px -5px 10px rgba(0,0,0,.3);
+  border-top-right-radius: 3px;
+}
+@media (max-width: 809.98px) {
+  /* One column on phones, so the tri-fold creases would cut through text. */
+  .kraft { background-position: -9999px 0, -9999px 0, 0 0, 0 0, 0 0, 0 0; background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat; }
+  .kraft::before { width: 40px; height: 40px; }
+}
 
 /* Shared dark surface for review and contact cards. */
 .card-dark { background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; }
